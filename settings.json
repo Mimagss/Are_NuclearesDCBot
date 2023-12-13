@@ -1,7 +1,7 @@
 {
     "settings_bot": {
         "prefix":"!",
-        "ownerId":,
+        "ownerId":0,
         "token": ""
     },
     "settings_NucleARES" : {
