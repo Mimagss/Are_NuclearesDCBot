@@ -1,8 +1,8 @@
 {
     "settings_bot": {
         "prefix":"!",
-        "ownerId":552929239490494474,
-        "token": "MTA1NDQ4NTUxNDEwMDY4Njg1OA.GCc9xJ.XBKJBN7nE2nf6bmPdk2ecq2niOmwU1TD-8Qc1E"
+        "ownerId":,
+        "token": ""
     },
     "settings_NucleARES" : {
         "url": "http://localhost:8080/",
