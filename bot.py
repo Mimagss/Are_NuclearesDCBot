@@ -295,263 +295,390 @@ class NucleARES_Slash_Commands(commands.Cog):
         ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.auto_requester(ctx= ctx, settings= self.settings))
 
-    @commands.command()
-    async def start_auto_requester(self, ctx) -> None:
+    @app_commands.command()
+    async def start_auto_requester(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.auto_requester(ctx= ctx, settings= self.settings))
 
-    @commands.command()
-    async def core_temp(self, ctx) -> None:
+    @app_commands.command()
+    async def core_temp(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_CORE_TEMP(ctx= ctx, settings= self.settings))
 
-    @commands.command()
-    async def core_temp_operative(self, ctx) -> None:
+    @app_commands.command()
+    async def core_temp_operative(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_CORE_TEMP_OPERATIVE(ctx= ctx, settings= self.settings))
     
-    @commands.command()
-    async def core_temp_max(self, ctx) -> None:
+    @app_commands.command()
+    async def core_temp_max(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_CORE_TEMP_MAX(ctx= ctx, settings= self.settings))
 
-    @commands.command()
-    async def core_temp_min(self, ctx) -> None:
+    @app_commands.command()
+    async def core_temp_min(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_CORE_TEMP_MIN(ctx= ctx, settings= self.settings))
 
-    @commands.command()
-    async def core_temp_residual(self, ctx) -> None:
+    @app_commands.command()
+    async def core_temp_residual(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_CORE_TEMP_RESIDUAL(ctx= ctx, settings= self.settings))
 
-    @commands.command()
-    async def core_pressure(self, ctx) -> None:
+    @app_commands.command()
+    async def core_pressure(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_CORE_PRESSURE(ctx= ctx, settings= self.settings))
 
-    @commands.command()
-    async def core_temp_residual(self, ctx) -> None:
+    @app_commands.command()
+    async def core_temp_residual(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_CORE_TEMP_RESIDUAL(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def core_pressure_max(self, ctx) -> None:
+    @app_commands.command()
+    async def core_pressure_max(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_CORE_PRESSURE_MAX(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def core_pressure_operative(self, ctx) -> None:
+    @app_commands.command()
+    async def core_pressure_operative(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_CORE_PRESSURE_OPERATIVE(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def core_integrity(self, ctx) -> None:
+    @app_commands.command()
+    async def core_integrity(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_CORE_INTEGRITY(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def core_temp_residual(self, ctx) -> None:
+    @app_commands.command()
+    async def core_temp_residual(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_CORE_TEMP_RESIDUAL(ctx= ctx, settings= self.settings))
 
-    @commands.command()
-    async def core_wear(self, ctx) -> None:
+    @app_commands.command()
+    async def core_wear(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_CORE_WEAR(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def core_state(self, ctx) -> None:
+    @app_commands.command()
+    async def core_state(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_CORE_STATE(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def core_state_criticality(self, ctx) -> None:
+    @app_commands.command()
+    async def core_state_criticality(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_CORE_STATE_CRITICALITY(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def core_critical_mass_reached(self, ctx) -> None:
+    @app_commands.command()
+    async def core_critical_mass_reached(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_CORE_CRITICAL_MASS_REACHED(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def core_critical_mass_reached_counter(self, ctx) -> None:
+    @app_commands.command()
+    async def core_critical_mass_reached_counter(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_CORE_CRITICAL_MASS_REACHED_COUNTER(ctx= ctx, settings= self.settings))
 
-    @commands.command()
-    async def core_imminent_fusion(self, ctx) -> None:
+    @app_commands.command()
+    async def core_imminent_fusion(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_CORE_IMMINENT_FUSION(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def core_ready_for_start(self, ctx) -> None:
+    @app_commands.command()
+    async def core_ready_for_start(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_CORE_READY_FOR_START(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def core_steam_present(self, ctx) -> None:
+    @app_commands.command()
+    async def core_steam_present(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_CORE_STEAM_PRESENT(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def core_high_steam_present(self, ctx) -> None:
+    @app_commands.command()
+    async def core_high_steam_present(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_CORE_HIGH_STEAM_PRESENT(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def time(self, ctx) -> None:
+    @app_commands.command()
+    async def time(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_TIME(ctx= ctx, settings= self.settings))
 
-    @commands.command()
-    async def time_stamp(self, ctx) -> None:
+    @app_commands.command()
+    async def time_stamp(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_TIME_STAMP(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def coolant_core_state(self, ctx) -> None:
+    @app_commands.command()
+    async def coolant_core_state(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_COOLANT_CORE_STATE(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def coolant_core_pressure(self, ctx) -> None:
+    @app_commands.command()
+    async def coolant_core_pressure(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_COOLANT_CORE_PRESSURE(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def coolant_core_max_pressure(self, ctx) -> None:
+    @app_commands.command()
+    async def coolant_core_max_pressure(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_COOLANT_CORE_MAX_PRESSURE(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def coolant_core_vessel_temperature(self, ctx) -> None:
+    @app_commands.command()
+    async def coolant_core_vessel_temperature(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_COOLANT_CORE_VESSEL_TEMPERATURE(ctx= ctx, settings= self.settings))
 
-    @commands.command()
-    async def core_temp_residual(self, ctx) -> None:
+    @app_commands.command()
+    async def core_temp_residual(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_CORE_TEMP_RESIDUAL(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def coolant_core_quantity_in_vessel(self, ctx) -> None:
+    @app_commands.command()
+    async def coolant_core_quantity_in_vessel(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_COOLANT_CORE_QUANTITY_IN_VESSEL(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def coolant_core_primary_loop_level(self, ctx) -> None:
+    @app_commands.command()
+    async def coolant_core_primary_loop_level(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_COOLANT_CORE_PRIMARY_LOOP_LEVEL(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def coolant_core_flow_speed(self, ctx) -> None:
+    @app_commands.command()
+    async def coolant_core_flow_speed(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_COOLANT_CORE_FLOW_SPEED(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def coolant_core_flow_ordered_speed(self, ctx) -> None:
+    @app_commands.command()
+    async def coolant_core_flow_ordered_speed(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_COOLANT_CORE_FLOW_ORDERED_SPEED(ctx= ctx, settings= self.settings))
 
-    @commands.command()
-    async def coolant_core_flow_reached_speed(self, ctx) -> None:
+    @app_commands.command()
+    async def coolant_core_flow_reached_speed(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_COOLANT_CORE_FLOW_REACHED_SPEED(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def coolant_core_quantity_circulation_pumps_present(self, ctx) -> None:
+    @app_commands.command()
+    async def coolant_core_quantity_circulation_pumps_present(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_COOLANT_CORE_QUANTITY_CIRCULATION_PUMPS_PRESENT(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def coolant_core_quantity_freight_pumps_present(self, ctx) -> None:
+    @app_commands.command()
+    async def coolant_core_quantity_freight_pumps_present(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_COOLANT_CORE_QUANTITY_FREIGHT_PUMPS_PRESENT(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def coolant_core_circulation_pump_0_status(self, ctx) -> None:
+    @app_commands.command()
+    async def coolant_core_circulation_pump_0_status(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_COOLANT_CORE_CIRCULATION_PUMP_0_STATUS(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def coolant_core_circulation_pump_1_status(self, ctx) -> None:
+    @app_commands.command()
+    async def coolant_core_circulation_pump_1_status(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_COOLANT_CORE_CIRCULATION_PUMP_1_STATUS(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def coolant_core_circulation_pump_2_status(self, ctx) -> None:
+    @app_commands.command()
+    async def coolant_core_circulation_pump_2_status(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_COOLANT_CORE_CIRCULATION_PUMP_2_STATUS(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def coolant_core_circulation_pump_0_dry_status(self, ctx) -> None:
+    @app_commands.command()
+    async def coolant_core_circulation_pump_0_dry_status(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_COOLANT_CORE_CIRCULATION_PUMP_0_DRY_STATUS(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def coolant_core_circulation_pump_1_dry_status(self, ctx) -> None:
+    @app_commands.command()
+    async def coolant_core_circulation_pump_1_dry_status(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_COOLANT_CORE_CIRCULATION_PUMP_1_DRY_STATUS(ctx= ctx, settings= self.settings))
 
-    @commands.command()
-    async def coolant_core_circulation_pump_2_dry_status(self, ctx) -> None:
+    @app_commands.command()
+    async def coolant_core_circulation_pump_2_dry_status(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_COOLANT_CORE_CIRCULATION_PUMP_2_DRY_STATUS(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def coolant_core_circulation_pump_1_overload_status(self, ctx) -> None:
+    @app_commands.command()
+    async def coolant_core_circulation_pump_1_overload_status(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_COOLANT_CORE_CIRCULATION_PUMP_1_OVERLOAD_STATUS(ctx= ctx, settings= self.settings))
 
-    @commands.command()
-    async def coolant_core_circulation_pump_2_overload_status(self, ctx) -> None:
+    @app_commands.command()
+    async def coolant_core_circulation_pump_2_overload_status(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_COOLANT_CORE_CIRCULATION_PUMP_2_OVERLOAD_STATUS(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def coolant_core_circulation_pump_3_overload_status(self, ctx) -> None:
+    @app_commands.command()
+    async def coolant_core_circulation_pump_3_overload_status(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_COOLANT_CORE_CIRCULATION_PUMP_3_OVERLOAD_STATUS(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def coolant_core_circulation_pump_0_ordered_speed(self, ctx) -> None:
+    @app_commands.command()
+    async def coolant_core_circulation_pump_0_ordered_speed(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_COOLANT_CORE_CIRCULATION_PUMP_0_ORDERED_SPEED(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def coolant_core_circulation_pump_1_ordered_speed(self, ctx) -> None:
+    @app_commands.command()
+    async def coolant_core_circulation_pump_1_ordered_speed(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_COOLANT_CORE_CIRCULATION_PUMP_1_ORDERED_SPEED(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def coolant_core_circulation_pump_2_ordered_speed(self, ctx) -> None:
+    @app_commands.command()
+    async def coolant_core_circulation_pump_2_ordered_speed(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_COOLANT_CORE_CIRCULATION_PUMP_2_ORDERED_SPEED(ctx= ctx, settings= self.settings))
 
-    @commands.command()
-    async def coolant_core_circulation_pump_0_speed(self, ctx) -> None:
+    @app_commands.command()
+    async def coolant_core_circulation_pump_0_speed(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_COOLANT_CORE_CIRCULATION_PUMP_0_SPEED(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def coolant_core_circulation_pump_1_speed(self, ctx) -> None:
+    @app_commands.command()
+    async def coolant_core_circulation_pump_1_speed(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_COOLANT_CORE_CIRCULATION_PUMP_1_SPEED(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def coolant_core_circulation_pump_2_speed(self, ctx) -> None:
+    @app_commands.command()
+    async def coolant_core_circulation_pump_2_speed(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_COOLANT_CORE_CIRCULATION_PUMP_2_SPEED(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def rods_status(self, ctx) -> None:
+    @app_commands.command()
+    async def rods_status(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_RODS_STATUS(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def rods_movement_speed(self, ctx) -> None:
+    @app_commands.command()
+    async def rods_movement_speed(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_RODS_MOVEMENT_SPEED(ctx= ctx, settings= self.settings))
 
-    @commands.command()
-    async def rods_movement_speed_decreased_high_temperature(self, ctx) -> None:
+    @app_commands.command()
+    async def rods_movement_speed_decreased_high_temperature(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_RODS_MOVEMENT_SPEED_DECREASED_HIGH_TEMPERATURE(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def rods_deformed(self, ctx) -> None:
+    @app_commands.command()
+    async def rods_deformed(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_RODS_DEFORMED(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def rods_temperature(self, ctx) -> None:
+    @app_commands.command()
+    async def rods_temperature(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_RODS_TEMPERATURE(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def rods_max_temperature(self, ctx) -> None:
+    @app_commands.command()
+    async def rods_max_temperature(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_RODS_MAX_TEMPERATURE(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def core_temp_residual(self, ctx) -> None:
+    @app_commands.command()
+    async def core_temp_residual(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_CORE_TEMP_RESIDUAL(ctx= ctx, settings= self.settings))
 
-    @commands.command()
-    async def rods_pos_ordered(self, ctx) -> None:
+    @app_commands.command()
+    async def rods_pos_ordered(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_RODS_POS_ORDERED(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def core_temp_residual(self, ctx) -> None:
+    @app_commands.command()
+    async def core_temp_residual(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_CORE_TEMP_RESIDUAL(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def rods_pos_actual(self, ctx) -> None:
+    @app_commands.command()
+    async def rods_pos_actual(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_RODS_POS_ACTUAL(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def rods_pos_reached(self, ctx) -> None:
+    @app_commands.command()
+    async def rods_pos_reached(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_RODS_POS_REACHED(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def rods_quantity(self, ctx) -> None:
+    @app_commands.command()
+    async def rods_quantity(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_RODS_QUANTITY(ctx= ctx, settings= self.settings))
 
-    @commands.command()
-    async def core_temp_residual(self, ctx) -> None:
+    @app_commands.command()
+    async def core_temp_residual(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_CORE_TEMP_RESIDUAL(ctx= ctx, settings= self.settings))
         
-    @commands.command()
-    async def rods_aligned(self, ctx) -> None:
+    @app_commands.command()
+    async def rods_aligned(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
         await ctx.send(embed= await self.nucleARES.get_RODS_ALIGNED(ctx= ctx, settings= self.settings))
  
-
 class NucleARES_Prefix_Commands(commands.Cog):
     def __init__(self, debug : bool, settings : dict) -> None:
         self.debug = debug
