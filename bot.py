@@ -48,7 +48,7 @@ class NucleARES(commands.Cog):
 #                                                        ---Logger---
 
     def getLogs(self):
-        #open file in read modew
+        """Returns the whole log file!!!"""
         with open(f"{os.path.dirname(__file__)}\\log.json", 'r') as file:
             #reads the file
             data = file.read()
@@ -60,7 +60,7 @@ class NucleARES(commands.Cog):
         """Logs the arg into the json file: log.json"""
         logs : dict[list] = self.getLogs()
         with open(f"{os.path.dirname(__file__)}/log.json", "w") as file:
-            data = logs.get('logs').insert(0, arg)
+            data = logs.get('logs').insert(0, arg) # weak point
             json.dump(data, file, sort_keys= True, indent= 4)
             file.close
 
@@ -74,17 +74,42 @@ class NucleARES(commands.Cog):
             await self.auto_requester(ctx, settings= settings)    
             return "Auto Request Enabled"
         else: 
-            return "Auto Request Disabeld"
             self.requesting = False
+            return "Auto Request Disabeld"
 
     async def auto_requester(self, ctx, settings):
         self.requesting = True
-        msg = await ctx.send(embed= await self.getEmbedMSG_TabletView(settings))
+        msg = await ctx.send(embed= await self.areDisplay(settings))
         while self.autoRequest:
             await asyncio.sleep(self.requestTime)
-            await msg.edit(embed= await self.getEmbedMSG_TabletView(settings))
+            await msg.edit(embed= await self.areDisplay(settings))
 
 #                                                        ---Embed-Messages---
+    async def areDisplay(self, settings : dict):
+        """"""
+        msg = discord.Embed(
+            title= "NucleARES"
+        )
+
+        msg.add_field(name= "TIME:", value= self.get_TIME(settings))
+        msg.add_field(name= "TIME_STAMP:", value= self.get_TIME_STAMP(settings))
+        msg.add_field(name= "CORE_TEMP", vaule= self.get_CORE_TEMP(settings))
+        msg.add_field(name= "CORE_PRESSURE", vaule= self.get_CORE_PRESSURE(settings))
+        msg.add_field(name= "CORE_STATE", vaule= self.get_CORE_STATE(settings))
+        msg.add_field(name= "CORE_IMMINENT_FUSION", vaule= self.get_CORE_IMMINENT_FUSION(settings))
+
+        msg.add_field(name= "COOLANT_CORE_STATE", vaule=self.get_COOLANT_CORE_STATE(settings))
+        msg.add_field(name= "COOLANT_CORE_PRESURE", vaule= self.get_COOLANT_CORE_PRESSURE(settings))
+        msg.add_field(name= "COOLANT_CORE_VESSEL_TEMPERATURE", vaule= self.get_COOLANT_CORE_VESSEL_TEMPERATURE(settings))
+        msg.add_field(name= "COOLANT_CORE_QUANTITY_IN_VESSEL", vaule= self.get_COOLANT_CORE_QUANTITY_IN_VESSEL(settings))
+        msg.add_field(name= "COOLANT_CORE_FLOW_SPEED", vaule= self.get_COOLANT_CORE_FLOW_SPEED(settings))
+        msg.add_field(name= "COOLANT_CORE_PRIMARY_LOOP_LEVEL", vaule= self.get_COOLANT_CORE_PRIMARY_LOOP_LEVEL(settings))
+
+        msg.add_field(name= "ROD_TEMP", vaule= self.get_RODS_TEMPERATURE(settings))
+        msg.add_field(name= "ROD_STATUS", vaule= self.get_RODS_STATUS(settings))
+        msg.add_field(name= "RODS_POS_ACTUAL", vaule= self.get_RODS_POS_ACTUAL(settings))
+
+        return msg
 
     async def getEmbedMSG_TabletView(self, settings : dict):
         embed = discord.Embed(
