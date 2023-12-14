@@ -42,6 +42,7 @@ class NucleARES(commands.Cog):
         self.debug : bool = debug # feature
         self.autoRequest : bool = autoRequest
         self.requestTime : int = requestTime
+        self.requesting = False
         ic.configureOutput(prefix= "LOG: ", outputFunction= self.log, includeContext= True)
 
 #                                                        ---Logger---
@@ -74,8 +75,10 @@ class NucleARES(commands.Cog):
             return "Auto Request Enabled"
         else: 
             return "Auto Request Disabeld"
+            self.requesting = False
 
     async def auto_requester(self, ctx, settings):
+        self.requesting = True
         msg = await ctx.send(embed= await self.getEmbedMSG_TabletView(settings))
         while self.autoRequest:
             await asyncio.sleep(self.requestTime)
