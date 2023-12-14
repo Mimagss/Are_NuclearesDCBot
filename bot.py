@@ -29,8 +29,8 @@ OWNER_ID : int = bot_settings.get('ownerId')
 async def on_ready():#funktioniert
     # init Bot
     debugMode = True # Logs every Variable in commands on shell
-    await client.add_cog(NucleARES_Slash_Commands(debug= debugMode, settings= settings.get('settings_NucleARES')))
-    await client.add_cog(NucleARES_Prefix_Commands(debug= debugMode, settings= settings.get('settings_NucleARES')))
+    await client.add_cog(NucleARES_Slash_Commands(debug= debugMode ,settings= settings.get('settings_NucleARES')))
+    await client.add_cog(NucleARES_Prefix_Commands(debug= debugMode ,settings= settings.get('settings_NucleARES')))
     await client.change_presence(activity=discord.Activity(type=discord.ActivityType.playing, name=f"NucleARES"))
     ic("Online")
     await client.tree.sync()
@@ -38,22 +38,33 @@ async def on_ready():#funktioniert
     await user.send("Klar soweit!")
 
 class NucleARES(commands.Cog):
-    def __init__(self, debug : bool, requestTime) -> None:
-        self.debug = debug # feature
-        self.autoRequest = True
-        self.requestTime : int = requestTime#10#360
-        #requests.get(settings.get('url'), params= {"Variable": "RODS_ALIGNED"})
+    def __init__(self, debug : bool, autoRequest : bool, requestTime : int) -> None:
+        self.debug : bool = debug # feature
+        self.autoRequest : bool = autoRequest
+        self.requestTime : int = requestTime
+        ic.configureOutput(prefix= "LOG: ", outputFunction= self.log, includeContext= True)
 
-#                                                        ---Auto-Request---
+#                                                        ---Logger---
+
+    def log(self, arg : str) -> None:
+        """Logs the arg into the json file: log.json"""
+        with open(f"{os.path.dirname(__file__)}/log.json", "a") as file:
+            json.dump(arg, file, sort_keys= True, indent= 4)
+            file.close
+
+#                                                        ---Listener and setter for the listener---
 
     async def changeAutoRequestMode(self):
         self.autoRequest = not self.autoRequest
+        if self.autoRequest:
+            return "Auto Request Enabled"
+        else: 
+            return "Auto Request Disabeld"
 
     async def auto_requester(self, ctx, settings):
         msg = await ctx.send(embed= await self.getEmbedMSG_TabletView(settings))
         while self.autoRequest:
             await asyncio.sleep(self.requestTime)
-            ic()
             await msg.edit(embed= await self.getEmbedMSG_TabletView(settings))
 
 #                                                        ---Embed-Messages---
@@ -63,15 +74,15 @@ class NucleARES(commands.Cog):
             title= "Tablet View"
         )
         # embed.add_field(name="", value="", inline= False)
-        embed.add_field(name="Ingame Zeit", value= f"{requests.get(settings.get('url'), params= {"Variable": "TIME"}).text}", inline= False)
-        embed.add_field(name="Core", value= f"{requests.get(settings.get('url'), params= {"Variable": "CORE_TEMP"}).text} C° | {requests.get(settings.get('url'), params= {"Variable": "CORE_PRESSURE"}).text} BAR", inline= False)
-        embed.add_field(name="Pressurizer", value="no api info", inline= False) #f"{requests.get(settings.get('url'), params= {"Variable": "CORE_INTEGRITY"}).text} %", inline= False)
-        embed.add_field(name="Steam Generator", value="no api info", inline= False) #value=f"{requests.get(settings.get('url'), params= {"Variable": "CORE_STATE"}).text}", inline= False)
+        embed.add_field(name="Ingame Zeit", value= self.get_TIME(settings= settings), inline= False)
+        embed.add_field(name="Core", value= f"{self.get_CORE_TEMP(settings= settings)} C° | {self.get_CORE_PRESSURE(settings= settings)} BAR", inline= False)
+        embed.add_field(name="Pressurizer", value="no api info", inline= False) #value= f"{self.get_CORE_INTEGRITY(settings= settings)} %", inline= False)
+        embed.add_field(name="Steam Generator", value="no api info", inline= False) #value= f"{self.get_CORE_STATE(settings= settings)}", inline= False)
         
         #keine ahnung welche der API befehle da richtig ist, hab einfach einen genommen der da war
-        embed.add_field(name="Core Circulation Pump 1", value=f"{requests.get(settings.get('url'), params= {"Variable": "COOLANT_CORE_CIRCULATION_PUMP_0_SPEED"}).text}", inline= False)
-        embed.add_field(name="Core Circulation Pump 2", value=f"{requests.get(settings.get('url'), params= {"Variable": "COOLANT_CORE_CIRCULATION_PUMP_1_SPEED"}).text}", inline= False)
-        embed.add_field(name="Core Circulation Pump 3", value=f"{requests.get(settings.get('url'), params= {"Variable": "COOLANT_CORE_CIRCULATION_PUMP_2_SPEED"}).text}", inline= False)
+        embed.add_field(name="Core Circulation Pump 1", value= self.get_COOLANT_CORE_CIRCULATION_PUMP_0_SPEED(settings= settings), inline= False)
+        embed.add_field(name="Core Circulation Pump 2", value= self.get_COOLANT_CORE_CIRCULATION_PUMP_1_SPEED(settings= settings), inline= False)
+        embed.add_field(name="Core Circulation Pump 3", value= self.get_COOLANT_CORE_CIRCULATION_PUMP_2_SPEED(settings= settings), inline= False)
         
         embed.add_field(name="Generator Turbine", value="no api info", inline= False)# value=f"{requests.get(settings.get('url'), params= {"Variable": "CORE_READY_FOR_START"}).text}", inline= False)
         embed.add_field(name="Condenser", value="no api info", inline= False)# value= requests.get(settings.get('url'), params= {"Variable": "RODS_ALIGNED"}).text, inline= False)
@@ -380,13 +391,13 @@ class NucleARES_Slash_Commands(commands.Cog):
     def __init__(self, debug : bool, settings : dict) -> None:
         self.debug = debug
         self.settings = settings
-        self.nucleARES : NucleARES = NucleARES(debug= debug, requestTime= settings.get('requestTime'))
+        self.nucleARES : NucleARES = NucleARES(debug= debug, autoRequest= settings.get('requestTime'), requestTime= settings.get('requestTime'))
 
     @app_commands.command()
     async def start_auto_requester(self, interaction: discord.Interaction) -> None:
         await interaction.response.defer()
         ctx = await commands.Context.from_interaction(interaction)
-        await ctx.send(await self.nucleARES.auto_requester(ctx= ctx, settings= self.settings))
+        await ctx.send(embed= await self.nucleARES.auto_requester(ctx= ctx, settings= self.settings))
 
     @app_commands.command()
     async def core_temp(self, interaction: discord.Interaction) -> None:
@@ -770,7 +781,7 @@ class NucleARES_Prefix_Commands(commands.Cog):
     def __init__(self, debug : bool, settings : dict) -> None:
         self.debug = debug
         self.settings = settings
-        self.nucleARES : NucleARES = NucleARES(debug= debug, requestTime= settings.get('requestTime'))
+        self.nucleARES : NucleARES = NucleARES(debug= debug, autoRequest= settings.get('requestTime'), requestTime= settings.get('requestTime'))
 
     @commands.command()
     async def start_auto_requester(self, ctx) -> None:
