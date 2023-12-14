@@ -65,9 +65,12 @@ class NucleARES(commands.Cog):
 
 #                                                        ---Listener and setter for the listener---
 
-    async def changeAutoRequestMode(self):
+    async def changeAutoRequestMode(self, ctx, settings):
         self.autoRequest = not self.autoRequest
         if self.autoRequest:
+            if self.requesting:
+                return "Auto Request Enabled"
+            await self.auto_requester(ctx, settings= settings)    
             return "Auto Request Enabled"
         else: 
             return "Auto Request Disabeld"
@@ -503,6 +506,13 @@ class NucleARES_Slash_Commands(commands.Cog):
         self.debug = debug
         self.settings = settings
         self.nucleARES : NucleARES = NucleARES(debug= debug, autoRequest= settings.get('requestTime'), requestTime= settings.get('requestTime'))
+    
+    @app_commands.command()
+    async def change_auto_request_mode(self, interaction: discord.Interaction) -> None:
+        await interaction.response.defer()
+        ctx = await commands.Context.from_interaction(interaction)
+        ic(ctx.message.author)
+        await ctx.send(await self.nucleARES.changeAutoRequestMode(ctx= ctx, settings= self.settings))
 
     @app_commands.command()
     async def start_auto_requester(self, interaction: discord.Interaction) -> None:
@@ -957,6 +967,11 @@ class NucleARES_Prefix_Commands(commands.Cog):
         self.debug : bool = debug
         self.settings : dict  = settings
         self.nucleARES : NucleARES = NucleARES(debug= debug, autoRequest= settings.get('requestTime'), requestTime= settings.get('requestTime'))
+
+    @commands.command()
+    async def change_auto_request_mode(self, ctx) -> None:
+        ic(ctx.message.author)
+        await ctx.send(await self.nucleARES.changeAutoRequestMode(ctx= ctx, settings= self.settings))
 
     @commands.command()
     async def start_auto_requester(self, ctx) -> None:
